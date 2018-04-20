@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        echo "Criando 85 livros...\n";
+        factory(App\Livro::class, 85)->create();
     }
 }

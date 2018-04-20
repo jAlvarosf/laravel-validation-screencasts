@@ -85,3 +85,137 @@ class AppServiceProvider extends ServiceProvider
 ```bash
 php artisan migrate
 ```
+
+## Crie dados fictícios
+- No arquivo database/factories/LivroFactory.php
+```php
+<?php
+
+use Faker\Generator as Faker;
+
+$factory->define(App\Livro::class, function (Faker $faker) {
+    return [
+        'titulo' => $faker->sentence,
+        'autor' => $faker->name,
+        'edicao' => $faker->numberBetween(1, 10),
+        'isbn' => $faker->unique()->randomNumber(8),
+    ];
+});
+
+```
+- No arquivo database/seeds/DatabaseSeeder.php
+```php
+<?php
+
+use Illuminate\Database\Seeder;
+
+class DatabaseSeeder extends Seeder
+{
+    /** 
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {   
+        echo "Criando 85 livros...\n";
+        factory(App\Livro::class, 85)->create();
+    }   
+}
+```
+### Rode o seeder para popular o banco de dados
+```bash
+php artisan db:seed
+```
+### Use o Tinker (ou seu cliente de banco de dados)
+Verificando se os dados foram gravados no banco:
+**Se não quiser usar o Tinker, use seu programa cliente de banco de dados favorito**
+```bash
+php artisan tinker
+```
+```php
+>>> Livro::count()
+>>> Livro::all()
+```
+
+## Ajustando o Controller
+Ajustar os métodos para lidar com os dados do banco e dos formulários
+- No arquivo app/Http/Copntrollers/LivroController.php
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Livro;
+use Illuminate\Http\Request;
+
+class LivroController extends Controller
+{
+    public function index()
+    {
+        $livros = Livro::all();
+        return view('livros.index', compact('livros'));
+    }
+
+    public function create()
+    {
+        return view('livros.create');
+    }
+
+    public function store(Request $request)
+    {
+        $livro = new Livro;
+        $livro->titulo = $request->titulo;
+        $livro->autor = $request->autor;
+        $livro->edicao = $request->edicao;
+        $livro->isbn = $request->isbn;
+
+        $livro->save();
+
+        $request->session()->flash('alert-success', 'Livro adicionado com sucesso!');
+        return redirect()->route('livros.index');
+    }
+
+    public function show(Livro $livro)
+    {
+        return view('livros.show', compact('livro'));
+    }
+
+    public function edit(Livro $livro)
+    {
+        return view('livros.edit', compact('livro'));
+    }
+
+    public function update(Request $request, Livro $livro)
+    {
+        $livro->titulo = $request->titulo;
+        $livro->autor = $request->autor;
+        $livro->edicao = $request->edicao;
+        $livro->isbn = $request->isbn;
+
+        $livro->save();
+
+        $request->session()->flash('alert-success', 'Livro alterado com sucesso!');
+        return redirect(back());
+    }
+
+    public function destroy(Request $request, Livro $livro)
+    {
+        $livro->delete();
+        $request->session()->flash('alert-success', 'livro apagado com sucesso!');
+        return redirect()->back();
+    }
+}
+```
+
+## Criar as rotas para nosso resource
+- No arquivo routes/web.php
+```php
+Route::resource('photos', 'PhotoController')
+```
+
+## Criar as views
+- No arquivo resources/views/livros/index.php
+- No arquivo resources/views/livros/show.php
+- No arquivo resources/views/livros/create.php
+- No arquivo resources/views/livros/edit.php

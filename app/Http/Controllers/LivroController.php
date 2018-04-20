@@ -14,7 +14,8 @@ class LivroController extends Controller
      */
     public function index()
     {
-        //
+        $livros = Livro::all();
+        return view('livros.index', compact('livros'));
     }
 
     /**
@@ -24,7 +25,7 @@ class LivroController extends Controller
      */
     public function create()
     {
-        //
+        return view('livros.create');
     }
 
     /**
@@ -35,7 +36,16 @@ class LivroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $livro = new Livro;
+        $livro->titulo = $request->titulo;
+        $livro->autor = $request->autor;
+        $livro->edicao = $request->edicao;
+        $livro->isbn = $request->isbn;
+
+        $livro->save();
+
+        $request->session()->flash('alert-success', 'Livro adicionado com sucesso!');
+        return redirect()->route('livros.index');
     }
 
     /**
@@ -46,7 +56,7 @@ class LivroController extends Controller
      */
     public function show(Livro $livro)
     {
-        //
+        return view('livros.show', compact('livro'));
     }
 
     /**
@@ -57,7 +67,7 @@ class LivroController extends Controller
      */
     public function edit(Livro $livro)
     {
-        //
+        return view('livros.edit', compact('livro'));
     }
 
     /**
@@ -69,7 +79,15 @@ class LivroController extends Controller
      */
     public function update(Request $request, Livro $livro)
     {
-        //
+        $livro->titulo = $request->titulo;
+        $livro->autor = $request->autor;
+        $livro->edicao = $request->edicao;
+        $livro->isbn = $request->isbn;
+
+        $livro->save();
+
+        $request->session()->flash('alert-success', 'Livro alterado com sucesso!');
+        return redirect(back());
     }
 
     /**
@@ -78,8 +96,10 @@ class LivroController extends Controller
      * @param  \App\Livro  $livro
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Livro $livro)
+    public function destroy(Request $request, Livro $livro)
     {
-        //
+        $livro->delete();
+        $request->session()->flash('alert-success', 'livro apagado com sucesso!');
+        return redirect()->back();
     }
 }
