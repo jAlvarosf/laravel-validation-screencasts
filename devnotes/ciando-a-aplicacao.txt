@@ -129,7 +129,7 @@ php artisan db:seed
 ```
 ### Use o Tinker (ou seu cliente de banco de dados)
 Verificando se os dados foram gravados no banco:
-*Se não quiser usar o Tinker, use seu programa cliente de banco de dados favorito*
+**Se não quiser usar o Tinker, use seu programa cliente de banco de dados favorito**
 ```bash
 php artisan tinker
 ```
@@ -302,7 +302,6 @@ Route::resource('photos', 'PhotoController')
 @include('forms.livro')
 ```
 - No arquivo resources/views/livros/edit.blade.php
-```php
 @include('forms.livro')
 ```
 - No arquivo resources/views/forms/livro.blade.php
