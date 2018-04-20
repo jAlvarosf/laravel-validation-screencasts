@@ -302,6 +302,7 @@ Route::resource('photos', 'PhotoController')
 @include('forms.livro')
 ```
 - No arquivo resources/views/livros/edit.blade.php
+```php
 @include('forms.livro')
 ```
 - No arquivo resources/views/forms/livro.blade.php
