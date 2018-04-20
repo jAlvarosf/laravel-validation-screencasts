@@ -67,7 +67,8 @@ class LivroController extends Controller
      */
     public function edit(Livro $livro)
     {
-        return view('livros.edit', compact('livro'));
+        $action = action('LivroController@update', $livro->id);
+        return view('livros.edit', compact('livro', "action"));
     }
 
     /**
@@ -87,7 +88,7 @@ class LivroController extends Controller
         $livro->save();
 
         $request->session()->flash('alert-success', 'Livro alterado com sucesso!');
-        return redirect(back());
+        return redirect(route('livros.index'));
     }
 
     /**
