@@ -1,0 +1,87 @@
+# Criando o projeto e deixando pronto para as validações
+
+## Criar o banco de dados
+```bash
+$ sudo mysql -p
+senha:
+```
+```sql
+CREATE DATABASE validation;
+GRANT ALL PRIVILEGES ON validation.* TO user@localhost IDENTIFIED BY 'user';
+```
+
+## Criar o projeto Laravel
+```bash
+composer create-project laravel/laravel validation
+cd validation
+```
+
+## Editar os dados da conexão com o banco de dados
+- No arquivo .env
+```bash
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=validation
+DB_USERNAME=user
+DB_PASSWORD=user
+```
+
+## Criar o model
+```bash
+php artisan make:model Livro -mcr
+```
+
+## Editar o arquivo de migração da tabela livros
+- No arquivo database/migrations/****_**_**_******_create_livros_table
+```php
+public function up()
+{   
+    Schema::create('livros', function (Blueprint $table) {
+        $table->increments('id');
+        $table->string('titulo');
+        $table->string('autor');
+        $table->string('edicao');
+        $table->string('isbn');
+        $table->timestamps();
+    }); 
+}
+```
+
+## Migrar o banco de dados
+- Se você usa o MariaDB, edite o arquivo app/Providers/AppServiceProvider.php
+```php
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema; /* MariaDB fix */
+
+class AppServiceProvider extends ServiceProvider
+{
+    /** 
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {   
+        Schema::defaultStringLength(191); /* MariaDB fix */
+    }
+
+    /** 
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {   
+        //  
+    }   
+}
+```
+- Rode a migration
+```bash
+php artisan migrate
+```
