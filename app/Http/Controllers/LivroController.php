@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Livro;
 use Illuminate\Http\Request;
+use App\Http\Requests\LivroRequest;
 
 class LivroController extends Controller
 {
@@ -34,14 +35,8 @@ class LivroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LivroRequest $request)
     {
-        $validacao = $request->validate([
-            'titulo' => 'bail|required|max:10',
-            'autor' => 'required',
-            'edicao' => 'required',
-            'isbn' => 'nullable|numeric',
-        ]);
 
         $livro = new Livro;
         $livro->titulo = $request->titulo;
@@ -85,14 +80,8 @@ class LivroController extends Controller
      * @param  \App\Livro  $livro
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Livro $livro)
+    public function update(LivroRequest $request, Livro $livro)
     {
-        $validacao = $request->validate([
-            'titulo' => 'required',
-            'autor' => 'required',
-            'edicao' => 'required',
-            'isbn' => 'nullable|numeric',
-        ]);
 
         $livro->titulo = $request->titulo;
         $livro->autor = $request->autor;
