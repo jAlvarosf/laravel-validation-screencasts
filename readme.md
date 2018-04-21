@@ -27,6 +27,8 @@ $validacao = $request->validate([
 ```
 
 ## Fontes de estudo - saiba mais
-[Writing the validation logic](https://laravel.com/docs/5.6/validation#quick-writing-the-validation-logic)
-[Displaying the validation errors](https://laravel.com/docs/5.6/validation#quick-displaying-the-validation-errors)
-[A note on optional fields](https://laravel.com/docs/5.6/validation#a-note-on-optional-fields)
+[Laravel 5.6 - Writing the validation logic](https://laravel.com/docs/5.6/validation#quick-writing-the-validation-logic)
+
+[Laravel 5.6 - Displaying the validation errors](https://laravel.com/docs/5.6/validation#quick-displaying-the-validation-errors)
+
+[Laravel 5.6 - A note on optional fields](https://laravel.com/docs/5.6/validation#a-note-on-optional-fields)
