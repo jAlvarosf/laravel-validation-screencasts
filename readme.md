@@ -2,7 +2,7 @@
 
 ## Criando o Form Request
 ```bash
-php artisan make:request StoreLivro
+php artisan make:request LivroRequest
 ```
 
 ## Colocando as regras no Form Request
