@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\Maiuscula;
 
 class LivroRequest extends FormRequest
 {
@@ -25,7 +26,7 @@ class LivroRequest extends FormRequest
     {
         return [
             'titulo' => 'required',
-            'autor' => 'required',
+            'autor' => ['required', 'string', new Maiuscula],
             'edicao' => 'required',
             'isbn' => 'nullable|numeric',
         ];
