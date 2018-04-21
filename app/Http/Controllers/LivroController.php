@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Livro;
 use Illuminate\Http\Request;
+use Validator;
 
 class LivroController extends Controller
 {
@@ -36,6 +37,19 @@ class LivroController extends Controller
      */
     public function store(Request $request)
     {
+        $validacao = Validator::make($request->all(), [
+            'titulo' => 'required',
+            'autor' => 'required',
+            'edicao' => 'required',
+            'isbn' => 'nullable|numeric',
+        ]);
+
+        if ($validacao->fails()) {
+            return redirect('livros/create')
+                        ->withErrors($validacao)
+                        ->withInput();
+        }
+
         $livro = new Livro;
         $livro->titulo = $request->titulo;
         $livro->autor = $request->autor;
@@ -80,6 +94,13 @@ class LivroController extends Controller
      */
     public function update(Request $request, Livro $livro)
     {
+        $validacao = Validator::make($request->all(), [
+            'titulo' => 'required',
+            'autor' => 'required',
+            'edicao' => 'required',
+            'isbn' => 'nullable|numeric',
+        ])->validate();
+
         $livro->titulo = $request->titulo;
         $livro->autor = $request->autor;
         $livro->edicao = $request->edicao;

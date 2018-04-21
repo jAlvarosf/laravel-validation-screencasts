@@ -1,0 +1,67 @@
+# Validando Manualmente
+
+## Usando o método make da classe Validator
+### Importe a classe Validator em app/Http/Controllers/LivroController
+```php
+use Validator;
+```
+
+### Coloque a lógica de validação no método store em app/Http/Controllers/LivroController
+```php
+public function store(Request $request)
+{
+    $validacao = Validator::make($request->all(), [
+        'titulo' => 'required',
+        'autor' => 'required',
+        'edicao' => 'required',
+        'isbn' => 'nullable|numeric',
+    ]);
+
+    if ($validacao->fails()) {
+        return redirect('livros/create')
+                    ->withErrors($validacao)
+                    ->withInput();
+    }
+
+    $livro = new Livro;
+    $livro->titulo = $request->titulo;
+    $livro->autor = $request->autor;
+    $livro->edicao = $request->edicao;
+    $livro->isbn = $request->isbn;
+
+    $livro->save();
+
+    $request->session()->flash('alert-success', 'Livro adicionado com sucesso!');
+    return redirect()->route('livros.index');
+}
+```
+
+## Usando redirecionamento automático
+### Coloque a lógica de validação no método update em app/Http/Controllers/LivroController
+- Chame o método validate() para redirecionar o validador criado manualmente:
+```php
+public function update(Request $request, Livro $livro)
+{
+    $validacao = Validator::make($request->all(), [
+        'titulo' => 'required',
+        'autor' => 'required',
+        'edicao' => 'required',
+        'isbn' => 'nullable|numeric',
+    ])->validate();
+
+    $livro->titulo = $request->titulo;
+    $livro->autor = $request->autor;
+    $livro->edicao = $request->edicao;
+    $livro->isbn = $request->isbn;
+
+    $livro->save();
+
+    $request->session()->flash('alert-success', 'Livro alterado com sucesso!');
+    return redirect(route('livros.index'));
+}
+```
+
+## Named error bags
+### Enviando os erros para o formulário adequado
+- Técnica que pode ser usada quando tivermos mais de um formulário na página.
+
