@@ -36,6 +36,13 @@ class LivroController extends Controller
      */
     public function store(Request $request)
     {
+        $validacao = $request->validate([
+            'titulo' => 'required',
+            'autor' => 'required',
+            'edicao' => 'required',
+            'isbn' => 'nullable|numeric',
+        ]);
+
         $livro = new Livro;
         $livro->titulo = $request->titulo;
         $livro->autor = $request->autor;
@@ -80,6 +87,13 @@ class LivroController extends Controller
      */
     public function update(Request $request, Livro $livro)
     {
+        $validacao = $request->validate([
+            'titulo' => 'required',
+            'autor' => 'required',
+            'edicao' => 'required',
+            'isbn' => 'nullable|numeric',
+        ]);
+
         $livro->titulo = $request->titulo;
         $livro->autor = $request->autor;
         $livro->edicao = $request->edicao;
