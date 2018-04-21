@@ -169,4 +169,5 @@ class LivroController extends Controller
 
 ## Fonte de estudo - Saiba mais
 [Krunal's post on AppDividend - Laravel 5.5 Validation Example From Scratch](https://appdividend.com/2017/09/02/laravel-5-5-validation-example-scratch/#Form_Request_Validation)
+
 [Laravel 5.6 - Form Request Validation](https://laravel.com/docs/5.6/validation#form-request-validation)
