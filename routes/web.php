@@ -11,7 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'LivroController@create');
 Route::resource('livros', 'LivroController');
+Route::post('editoras', 'LivroController@storeEditora');

@@ -43,11 +43,10 @@ class LivroController extends Controller
             'edicao' => 'required',
             'isbn' => 'nullable|numeric',
         ]);
-
+        
         if ($validacao->fails()) {
             return redirect('livros/create')
-                        ->withErrors($validacao)
-                        ->withInput();
+                        ->withErrors($validacao, 'livro');
         }
 
         $livro = new Livro;
@@ -59,6 +58,22 @@ class LivroController extends Controller
         $livro->save();
 
         $request->session()->flash('alert-success', 'Livro adicionado com sucesso!');
+        return redirect()->route('livros.index');
+    }
+
+    public function storeEditora(Request $request)
+    {
+        $validacao = Validator::make($request->all(), [
+            'nome' => 'required',
+            'site' => 'nullable|url',
+        ]);
+        
+        if ($validacao->fails()) {
+            return redirect('livros/create')
+                        ->withErrors($validacao, 'editora');
+        }
+
+        $request->session()->flash('alert-success', 'Editora cadastrada corretamente');
         return redirect()->route('livros.index');
     }
 
