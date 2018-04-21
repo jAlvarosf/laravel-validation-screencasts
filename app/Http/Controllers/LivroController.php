@@ -37,7 +37,7 @@ class LivroController extends Controller
     public function store(Request $request)
     {
         $validacao = $request->validate([
-            'titulo' => 'required',
+            'titulo' => 'bail|required|max:10',
             'autor' => 'required',
             'edicao' => 'required',
             'isbn' => 'nullable|numeric',
