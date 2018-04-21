@@ -12,7 +12,7 @@ $validacao = $request->validate([
 ```
 
 ## Mostre as mensagens de erro
-- Insira a div que mostra os erros em resources/views/livros/create.blade.php
+- Insira a div que mostra os erros em resources/views/forms/livro.blade.php
 ```php
 /* Inserir abaixo de <div class="col-md-8"> */
 @if ($errors->any())
