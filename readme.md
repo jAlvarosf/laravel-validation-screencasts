@@ -1,4 +1,5 @@
 # Validando Manualmente
+[Link para o screencast no YouTube](https://www.youtube.com/watch?v=J0aqAZdF3KU)
 
 ## Usando o método make da classe Validator
 ### Importe a classe Validator em app/Http/Controllers/LivroController
