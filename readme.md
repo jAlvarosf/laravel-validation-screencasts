@@ -1,4 +1,5 @@
 # Traduzindo as mensagens de erro
+[Link para o screencast no YouTube](https://www.youtube.com/watch?v=0b-glTSPwck)
 
 ## Crie o arquivo das mensagens em português brasileiro
 - resources/lang/pt-br/validation.php
