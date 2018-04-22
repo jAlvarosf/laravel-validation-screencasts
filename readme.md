@@ -1,4 +1,5 @@
 # Criando regras personalizadas
+[Link para o screencast no YouTube](https://www.youtube.com/watch?v=b6jlJL2gMKQ)
 
 ## Crie uma nova regra
 Exemplo simples e não muito útil, mas eficiente para enterdermos as regras personalizadas.
