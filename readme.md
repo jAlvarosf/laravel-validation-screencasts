@@ -1,4 +1,5 @@
 # Validando formulários
+[Link para o screencast no YouTube](https://www.youtube.com/watch?v=2SGlXksD2gA)
 
 ## Escreva a lógica de validação
 - Nos métodos store e update do controller app/Http/Controllers/LivroController
