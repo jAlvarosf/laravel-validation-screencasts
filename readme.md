@@ -103,13 +103,13 @@ Route::post('editoras', 'LivroController@storeEditora');
     <div class="form-group row">
         <label for="nome" class="col-md-4 col-form-label text-md-right">Nome da Editora</label>
         <div class="col-md-6">
-            <input id="nome" class="form-control" name="nome" type="text" value="{{ $livro->titulo or ''}}">
+            <input id="nome" class="form-control" name="nome" type="text">
         </div>
     </div>
     <div class="form-group row">
         <label for="site" class="col-md-4 col-form-label text-md-right">Site</label>
         <div class="col-md-6">
-            <input id="site" class="form-control" name="site" type="text" value="{{ $livro->autor or ''}}">
+            <input id="site" class="form-control" name="site" type="text">
         </div>
     </div>
     <div class="form-group row mb-0">
@@ -305,13 +305,13 @@ class LivroController extends Controller
                         <div class="form-group row">
                             <label for="nome" class="col-md-4 col-form-label text-md-right">Nome da Editora</label>
                             <div class="col-md-6">
-                                <input id="nome" class="form-control" name="nome" type="text" value="{{ $livro->titulo or ''}}">
+                                <input id="nome" class="form-control" name="nome" type="text">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="site" class="col-md-4 col-form-label text-md-right">Site</label>
                             <div class="col-md-6">
-                                <input id="site" class="form-control" name="site" type="text" value="{{ $livro->autor or ''}}">
+                                <input id="site" class="form-control" name="site" type="text">
                             </div>
                         </div>
                         <div class="form-group row mb-0">
