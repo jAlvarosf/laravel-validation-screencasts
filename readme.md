@@ -1,4 +1,5 @@
 # Criando o projeto e deixando pronto para as validações
+[Link para a playlist com os screencasts no YouTube](https://www.youtube.com/watch?v=2SGlXksD2gA&list=PLIFOx3X8xDuvT4otwlbFM7ca8uCRrY9C_)
 
 ## Criar o banco de dados
 ```bash
